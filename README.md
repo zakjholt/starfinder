@@ -84,6 +84,7 @@ I've added [Quantum](https://github.com/quantum-elixir/quantum-core) to the deps
 1. Change the 2 db queries for old_stargazers/new_stargazers to be a single group_by query
 2. Rethink the api routes. /api/repositories/<repo_id>/stargazers in particular is a bit weird to me I think
 3. Add error handling/better date parsing to the start_date param
+4. Validation when you add a repository that it actually exists
 
 ## Boilerplate
 

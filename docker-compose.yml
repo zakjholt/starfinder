@@ -1,0 +1,28 @@
+---
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=s76
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    volumes:
+      - .:/home
+    ports:
+      - 4000:4000
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOSTNAME=db
